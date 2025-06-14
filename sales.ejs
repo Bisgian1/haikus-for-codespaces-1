@@ -1,0 +1,75 @@
+<!-- sales.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sales Module</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f9f9f9; }
+    h2 { margin-bottom: 10px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    th { background-color: #f0f0f0; }
+    button { margin-top: 15px; padding: 10px 15px; }
+    input, select { padding: 5px; margin: 5px 0; width: 100%; }
+    .form-group { margin-bottom: 15px; }
+  </style>
+</head>
+<body>
+  <h2>Sales Leads</h2>
+
+  <form id="salesForm">
+    <div class="form-group">
+      <label>Customer Name:</label>
+      <input type="text" id="customerName" required />
+    </div>
+    <div class="form-group">
+      <label>Product:</label>
+      <input type="text" id="product" required />
+    </div>
+    <div class="form-group">
+      <label>Status:</label>
+      <select id="status">
+        <option value="new">New</option>
+        <option value="contacted">Contacted</option>
+        <option value="quoted">Quoted</option>
+        <option value="won">Won</option>
+        <option value="lost">Lost</option>
+      </select>
+    </div>
+    <button type="submit">Add Lead</button>
+  </form>
+
+  <table id="leadsTable">
+    <thead>
+      <tr>
+        <th>Customer</th>
+        <th>Product</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const form = document.getElementById('salesForm');
+    const tableBody = document.querySelector('#leadsTable tbody');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const customer = document.getElementById('customerName').value;
+      const product = document.getElementById('product').value;
+      const status = document.getElementById('status').value;
+
+      const row = document.createElement('tr');
+      row.innerHTML = `<td>${customer}</td><td>${product}</td><td>${status}</td>`;
+      tableBody.appendChild(row);
+
+      form.reset();
+    });
+  </script>
+</body>
+</html>
